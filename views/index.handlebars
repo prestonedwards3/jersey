@@ -4,7 +4,7 @@
 <ul>
     {{#each jersey}}
         <li>
-            <p>{{this.id}}. {{this.movie}}</p>
+            <p>{{this.id}}. {{this.jersey}}</p>
 
             <form action="/delete?_method=DELETE" method="POST">
                 <input type="hidden" name="id" value="{{this.id}}">
@@ -26,11 +26,7 @@
     <textarea type="text" name="jersey" placeholder="what do you want to update this movie to?"></textarea>
     <button type="submit">Update Jersey</button>
 </form>
-<h2>Add a sports jersey that you wish you had</h2>
-<form method="POST" action="/create">
-<textarea type="text" name="jersey"></textarea>
-<button type="submit">Send jersey</button>
-</form>
+
 </div>  
 
 </div>

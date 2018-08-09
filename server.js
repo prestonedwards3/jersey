@@ -6,25 +6,29 @@ var mysql = require('mysql');
 
 
 var app = express();
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json());
 
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-var port = 3103;
+
+var port = 8283;
+
 app.listen(port);
 
 var routes = require("./controllers/jersey_controller.js");
+
+app.use(routes);
 
 
 app.use(function (req, res, next) {});
 
 app.use(express.static("public"));
 
-app.get('/', function(req, res){
-    console.log("this worked")
-    res.render('index');
-    });
+
+
+console.log(`CONNECTED ON PORT ${port}`)

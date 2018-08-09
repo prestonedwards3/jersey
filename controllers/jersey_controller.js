@@ -3,28 +3,47 @@ var jersey = require('../models/jersey.js');
 
 var router = app.Router();
 
+
 router.get('/', function(req, res){
-    console.log("this worked")
-    res.render('index');
+    jersey.selectAll(function(data) {
+        var hbsObject = {
+          jersey: data
+        };
+        console.log(hbsObject);
+        res.render("index", hbsObject);
+      });
     });
 
 router.post('/create', function(req, res){
-    connection.query('INSERT INTO jersey (jersey, sold) VALUES (?);', [req.body.jersey, req.body.sold], function(err, reuslt){
-        if(err) throw err;
+    jersey.insert([
+        "jersey", "order"
+      ], [
+        req.body.jersey, req.body.order
+      ], function(result) {
+        // Send back the ID of the new quote
         res.redirect('/');
-        })
+      });
     });
 
 router.put('/update', function(req, res){
-    connection.query('UPDATE jersey SET jersey = ? where id = ?;', [req.body.jersey, req.body.id], function(err, repsonse){
-        if(err)throw err;
-        res.redirect('/')
-        })
-    });
+   
+
+    jersey.update(
+        {sold: req.body.sold},
+        {id: req.body.id}, 
+        function(result){
+            res.redirect('/');
+        }
+        
+
+    );
+});
+    /*
 router.delete('/delete', function(req, res){
-    connection.query("DELETE FROM jersey WHERE id = ?;", [req.body.id] ,function(err, response){
-        if (err) throw err;
+    jersey.
         res.redirect('/');
-        })
+        
     });
+    */
+
     module.exports = router;
