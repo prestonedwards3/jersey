@@ -1,18 +1,35 @@
 <div class="main">
-
+<h1>Exclusive Jerseys</h1>
 <div style="width:800px; margin:0 auto;">  
+
+<div class="row"> 
+<div class="col-lg-4"> 
+    <h2>Jerseys that have not been ordered</h2>
+<div id="unordered">   
 <ul>
     {{#each jersey}}
+    {{#unless ordered}}
         <li>
-            <p>{{this.id}}. {{this.jersey}}</p>
+            
+        <p>{{this.id}}. {{this.jersey}} </p>
 
-            <form action="/delete?_method=DELETE" method="POST">
-                <input type="hidden" name="id" value="{{this.id}}">
-                <button type="submit">DELETE</button>
-            </form>
+        <form action="/update?_method=PUT" method="POST">
+            <input type="hidden" name="order" value="{{this.id}}">
+            <button type="submit">Order</button>
+        </form>
+        <form action="/delete" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button type="submit">Delete</button>
+        </form>
         </li>
+        {{/unless}}
         {{/each}}
 </ul>
+</div>  
+</div>
+
+<div class="col-lg-4"> 
+
 
 <h2>Add a Jersey</h2>
 <form method="POST" action="/create">
@@ -22,11 +39,38 @@
 
 <h2>Update Jersey</h2>
 <form method="POST" action="/update?_method=PUT">
-    <input type="text" name="id" placeholder="id">
-    <textarea type="text" name="jersey" placeholder="what do you want to update this movie to?"></textarea>
-    <button type="submit">Update Jersey</button>
+  <div class="form-group">
+    <label for="sold">Has anyone purchased this jersey?</label><br>
+    <input type="radio" name="sold" value="1" checked> Sold<br>
+    <input type="radio" name="sold" value="0"> Not sold <br>
+    <button type="submit">Update</button>
+  </div>
 </form>
 
-</div>  
+</div> 
 
+<div class="col-lg-4"> 
+<div id="ordered"> 
+<h2>Jerseys that have been ordered</h2>
+
+<ul>
+  <li> 
+  {{#each jersey}}
+    {{#if ordered}}
+      <p>{{this.id}}. {{this.jersey}} </p>
+      <form action="/delete?_method=DELETE" method="POST">
+        <input type="hidden" name="id" value="{{this.id}}">
+        <button type="submit">Delete</button>
+    </form>
+    {{/if}}
+  {{/each}}
+  </li>
+</ul>
+</div>
+</div>
+
+ 
+</div>
+
+</div>
 </div>

@@ -17,8 +17,13 @@ var jersey = {
             cb(res);
         })
     },
-    Update: function(col, val, cb){
+    update: function(col, val, cb){
         orm.updateOne(col, val, function(res){
+            cb(res);
+        })
+    },
+    delete: function(val, cb){
+        orm.deleteOne(val, function(res){
             cb(res);
         })
     }

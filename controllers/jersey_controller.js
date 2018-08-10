@@ -15,11 +15,11 @@ router.get('/', function(req, res){
     });
 
 router.post('/create', function(req, res){
-    jersey.insert([
-        "jersey", "order"
-      ], [
-        req.body.jersey, req.body.order
-      ], function(result) {
+    jersey.insert(
+        "jersey"
+      , 
+        req.body.jersey
+      , function(result) {
         // Send back the ID of the new quote
         res.redirect('/');
       });
@@ -29,8 +29,8 @@ router.put('/update', function(req, res){
    
 
     jersey.update(
-        {sold: req.body.sold},
-        {id: req.body.id}, 
+        {sold: req.body.order},
+        {id: req.body.value}, 
         function(result){
             res.redirect('/');
         }
@@ -38,12 +38,15 @@ router.put('/update', function(req, res){
 
     );
 });
-    /*
-router.delete('/delete', function(req, res){
-    jersey.
-        res.redirect('/');
+
+    router.delete('/delete', function(req, res){
+        jersey.delete(req.body.value, function(result){
+            if (err) throw err;
+            res.redirect('/');
+        })
+   
         
     });
-    */
+    
 
     module.exports = router;
