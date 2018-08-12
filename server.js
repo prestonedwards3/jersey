@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-var port = 8283;
+var port = process.env.PORT || 8283;
 
 app.listen(port, function(){
     console.log(`CONNECTED ON PORT ${port}`)
