@@ -7,15 +7,16 @@
     <h2>Jerseys that have not been ordered</h2>
 <div id="unordered">   
   <table> 
-    {{#each jersey}}
-    {{#unless ordered}}
-          <tr>
+        <tr>
             <th>ID</th>
             <th>Jersey Name</th> 
             <th>Ordered?</th>
             <th>Delete</th>
           </tr>
         <tr>
+    {{#each jersey}}
+    {{#unless ordered}}
+      
             <td>{{this.id}}.</td>
             <td>{{this.jersey}}</td> 
             <td>
