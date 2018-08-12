@@ -11,7 +11,48 @@ html {
     margin: 0px;
     height: 100%;
     width: 100%;
-    background-color: black;
-    color: whitesmoke 
+    
  }
 
+ .main {
+    width: 100%;
+    
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; 
+ }
+ h1 {
+     text-align: center;
+     font-family: 'Pacifico', 'cursive';
+ }
+#unordered {
+   
+  
+    overflow: scroll;
+}
+
+#ordered {
+    width: 425px;
+    overflow: scroll;
+
+}
+#unordered {
+    width: 425px;
+    overflow: scroll;
+
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table {
+    width: 400px;
+}
+
+#add {
+    position: relative;
+    top: 250px;
+}

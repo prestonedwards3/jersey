@@ -3,41 +3,51 @@
 <div style="width:800px; margin:0 auto;">  
 
 <div class="row"> 
-<div class="col-lg-4"> 
+<div class="col-lg-4", > 
     <h2>Jerseys that have not been ordered</h2>
 <div id="unordered">   
-<ul>
+  <table> 
     {{#each jersey}}
     {{#unless ordered}}
-        <li>
-            
-        <p>{{this.id}}. {{this.jersey}} </p>
-
-        <form action="/update?_method=PUT" method="POST">
-            <input type="hidden" name="order" value="{{this.id}}">
-            <button type="submit">Order</button>
-        </form>
-        <form action="/delete" method="POST">
+          <tr>
+            <th>ID</th>
+            <th>Jersey Name</th> 
+            <th>Ordered?</th>
+            <th>Delete</th>
+          </tr>
+        <tr>
+            <td>{{this.id}}.</td>
+            <td>{{this.jersey}}</td> 
+            <td>
+              <form action="/update" method="POST">
+              <input type="hidden" name="ordered" value="{{this.id}}">
+              <button type="submit">Ordered</button>
+              </form>
+            </td>
+            <td>
+            <form action="/delete" method="POST">
             <input type="hidden" name="id" value="{{this.id}}">
             <button type="submit">Delete</button>
-        </form>
-        </li>
+            </form>
+            </td>
+          </tr>
+        
         {{/unless}}
         {{/each}}
-</ul>
+        </table>
+
 </div>  
 </div>
 
-<div class="col-lg-4"> 
+<div class="col-lg-4" id="add"> 
 
 
 <h2>Add a Jersey</h2>
 <form method="POST" action="/create">
-<textarea type="text" name="jersey"></textarea>
+<textarea type="input" name="myjersey"></textarea>
 <button type="submit">Add Jersey</button>
 </form>
 
-<h2>Update Jersey</h2>
 <form method="POST" action="/update?_method=PUT">
   <div class="form-group">
     <label for="sold">Has anyone purchased this jersey?</label><br>
@@ -50,22 +60,33 @@
 </div> 
 
 <div class="col-lg-4"> 
-<div id="ordered"> 
-<h2>Jerseys that have been ordered</h2>
 
-<ul>
-  <li> 
+<h2>Jerseys that have been ordered</h2>
+<div id="ordered"> 
+<table> 
+  <tr>
+    <th>ID</th>
+    <th>Jersey Name</th> 
+    <th>Sold?</th>
+    <th>Delete</th>
+  </tr>
   {{#each jersey}}
     {{#if ordered}}
-      <p>{{this.id}}. {{this.jersey}} </p>
-      <form action="/delete?_method=DELETE" method="POST">
+  <tr>
+    <td>{{this.id}}.</td>
+    <td>{{this.jersey}}</td> 
+    <td>{{this.sold}}</td>
+    <td>
+        <form action="/delete?_method=DELETE" method="POST">
         <input type="hidden" name="id" value="{{this.id}}">
         <button type="submit">Delete</button>
-    </form>
+        </form>
+    </td>
+  </tr>
+
     {{/if}}
   {{/each}}
-  </li>
-</ul>
+</table>
 </div>
 </div>
 

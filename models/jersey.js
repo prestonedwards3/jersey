@@ -12,19 +12,20 @@ var jersey = {
             cb(res);
         })
     },
-    insert: function(col, val, cb){
-        orm.insertOne(col, val, function(res){
+    insert: function(val, cb){
+        orm.insertOne(val, function(res){
             cb(res);
         })
     },
-    update: function(col, val, cb){
-        orm.updateOne(col, val, function(res){
+    update: function(val2, cb){
+        orm.updateOne(val2, function(res){
             cb(res);
         })
     },
     delete: function(val, cb){
         orm.deleteOne(val, function(res){
             cb(res);
+            console.log(val);
         })
     }
 };

@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS jersey_db;
+
+USE jersey_db;
+
+DROP TABLE IF EXISTS jersey;
+
+
+
+CREATE TABLE jersey (
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+, jersey VARCHAR (100) NOT NULL 
+, sold BOOLEAN
+);
+
+ALTER TABLE jersey
+  ADD ordered BOOLEAN;
